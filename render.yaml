@@ -1,20 +1,18 @@
 services:
-  # --- Backend Node.js ---
   - type: web
     name: financiera-backend
     env: node
+    plan: free
     buildCommand: "cd backend && npm install"
     startCommand: "cd backend && node server.js"
-    envVars:
-      - key: PORT
-        value: 4000
-    plan: free
 
-  # --- Frontend React/Vite ---
-  - type: static_site
+  - type: static
     name: financiera-frontend
+    env: static
+    plan: free
     buildCommand: "cd frontend && npm install && npm run build"
-    staticPublishPath: frontend/dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://financiera-backend.onrender.com
+    staticPublishPath: "frontend/dist"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
