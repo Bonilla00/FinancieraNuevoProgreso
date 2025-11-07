@@ -1,0 +1,4 @@
+import React,{useEffect,useState} from 'react'; import {apiGet,money} from '../utils/api.js'
+export default function Pagos(){ const [rows,setRows]=useState([]); useEffect(()=>{apiGet('/pagos').then(d=>setRows(d.rows))},[]);
+return (<div className="card"><h3>Pagos</h3><table><thead><tr><th>ID</th><th>Préstamo</th><th>Cliente</th><th>Fecha</th><th>Valor</th><th>Cuota</th><th>Método</th></tr></thead>
+<tbody>{rows.map(r=>(<tr key={r.id}><td>{r.id}</td><td>{r.prestamo_codigo}</td><td>{r.cliente}</td><td>{r.fecha_pago}</td><td>{money(r.valor)}</td><td>{r.cuota||'-'}</td><td>{r.metodo||'-'}</td></tr>))}</tbody></table></div>) }
