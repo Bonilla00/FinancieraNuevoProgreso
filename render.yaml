@@ -3,16 +3,16 @@ services:
     name: financiera-backend
     env: node
     plan: free
-    buildCommand: npm install
-    startCommand: node backend/server.js
     rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
     envVars:
       - key: NODE_VERSION
         value: 18
 
-  - type: static_site
+  - type: static
     name: financiera-frontend
     plan: free
-    buildCommand: npm install && npm run build
-    publishPath: frontend/dist
     rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
