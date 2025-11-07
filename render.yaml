@@ -6,7 +6,7 @@ services:
     buildCommand: "cd backend && npm install"
     startCommand: "cd backend && node server.js"
 
-  - type: static
+  - type: web
     name: financiera-frontend
     env: static
     plan: free
