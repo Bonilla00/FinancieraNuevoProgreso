@@ -11,12 +11,10 @@ services:
     plan: free
 
   # --- Frontend React/Vite ---
-  - type: web
+  - type: static_site
     name: financiera-frontend
-    env: static
     buildCommand: "cd frontend && npm install && npm run build"
     staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
         value: https://financiera-backend.onrender.com
-    plan: free
